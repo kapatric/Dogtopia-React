@@ -21,28 +21,31 @@ export default function Breed() {
   let fetchBreed = () => {
     fetch(url.url, url.headers)
     .then((res) => res.json())
-    .then((res) => console.log(res[0].name))
     .then((res) => setData(res))
+
   }
-
-
-
-
-console.log(data)
-
+  console.log(data, "here")
+if (!data) return <h3></h3>
   return (
     <div className="App">
       <header>
         <nav className="Navbar">
         <h1  className="nav-branding">Art BASEL</h1>
-          <div className="Breed">{data}</div>
+          
             <div className="hamburger">
               <span className="bar"></span>
               <span className="bar"></span>
               <span className="bar"></span>
             </div>
-          </nav>
+        </nav>
       </header>
+
+      {data.map((breed, index) => {
+return <div className="Breed">{breed.name}</div>
+      }
+        
+      )}
+      {/*<div className="Breed">{data[0].name}</div>*/}
     </div>
   );
 }
