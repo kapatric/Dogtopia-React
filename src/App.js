@@ -1,53 +1,58 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios";
-import './App.css';
+import React, { useState, useEffect } from "react";
+import ImageSlider from "./ImageSlider"
+import "./App.css"
 
-export default function Breed() {
+export default function App() {
   const [data, setData] = useState();
+  const slides = []
+
+  
+  const containerStyles = {
+    width: "500px",
+    height: "280px",
+    margin: "0 auto",
+  }
   const url = {
-    method: 'GET',
-    url: 'https://api.thedogapi.com/v1/breeds',
+    method: "GET",
+    url: "https://api.thedogapi.com/v1/breeds",
     headers: {
-      'X-RapidAPI-Key': 'live_nWWQoLtH76j9sn8zN1QQPM56cYfwtERfwW06wUR6xPSxsDFXIaIZ3fk73kVzoRAW',
+      "X-RapidAPI-Key":
+        "live_nWWQoLtH76j9sn8zN1QQPM56cYfwtERfwW06wUR6xPSxsDFXIaIZ3fk73kVzoRAW",
       Accept: "application/json",
-    }
+    },
   };
 
   useEffect(() => {
-    fetchBreed()
+    fetchBreed();
   }, []);
-  
 
   let fetchBreed = () => {
     fetch(url.url, url.headers)
-    .then((res) => res.json())
-    .then((res) => setData(res))
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  };
+  
+  if (!data) return;
 
-  }
-  console.log(data, "here")
-if (!data) return <h3></h3>
   return (
     <div className="App">
       <header>
         <nav className="Navbar">
-        <h1  className="nav-branding">Art BASEL</h1>
+          <h1 className="nav-branding">Dogtopia</h1>   
           
-            <div className="hamburger">
-              <span className="bar"></span>
-              <span className="bar"></span>
-              <span className="bar"></span>
-            </div>
         </nav>
+        
       </header>
 
-      {data.map((breed, index) => {
-return <div className="Breed">{breed.name}</div>
-      }
-        
-      )}
-      {/*<div className="Breed">{data[0].name}</div>*/}
+      <div style={containerStyles}>
+        <ImageSlider slides={slides} />
+      </div>
+      {
+    data.map((breed, index) => {
+      slides.push(breed.image.url)
+      return breed.image.url;
+    })
+  }
     </div>
   );
 }
-
-
