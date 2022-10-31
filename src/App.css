@@ -94,8 +94,8 @@ img {
   z-index: 10;
   user-select: none;
 }
+
 @media(min-width:768px){
-  
 
   .menu {
     position: fixed;
@@ -115,6 +115,40 @@ img {
   }
  .menu.active{
     right: 0;
+  }
+  img {
+    width: 1000px;
+    height: 600px;
+    border-radius: 115px;
+   margin: 10px;
+  }
+  .slides {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rightarrow {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10;
+    user-select: none;
+    color: #000000
+  }
+  
+  .leftarrow {
+    position: absolute;
+    top: 50%;
+    left: 32px;
+    font-size: 3rem;
+    color: #000000;
+    cursor: pointer;
+    z-index: 10;
+    user-select: none;
   }
 }
 
