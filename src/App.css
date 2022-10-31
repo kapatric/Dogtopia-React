@@ -14,10 +14,6 @@ header {
   background-color: black;
 }
 
-li {
-list-style: none;
-color: rgb(37, 222, 151);
-}
 
 h1 {
   color: rgb(37, 222, 151);
@@ -45,8 +41,6 @@ text-decoration: none;
 .nav-branding {
   font-size:xx-large;
 }
-
-
 
 .bar {
   display: block;
@@ -79,6 +73,27 @@ img {
   align-items: center;
 }
 
+.rightarrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  cursor: pointer;
+  z-index: 10;
+  user-select: none;
+  color: #000000
+}
+
+.leftarrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #000000;
+  cursor: pointer;
+  z-index: 10;
+  user-select: none;
+}
 @media(min-width:768px){
   
 

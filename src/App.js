@@ -7,7 +7,9 @@ import Breed from "./Breed"
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [data, setData] = useState();
-  const slides = []
+  const length = Breed.length;
+  
+  
 
   
   const url = {
@@ -28,17 +30,26 @@ export default function App() {
     fetch(url.url, url.headers)
       .then((res) => res.json())
       .then((res) => setData(res));
-    
-    
   };
 
+  console.log(currentSlide)
+
+  const nextSlide = () => {
+    if (currentSlide >= 0) {
+      setCurrentSlide(currentSlide + 1)
+    } else {
+      setCurrentSlide(0)
+    }
+  }
   
-  const handleClick = () => {
-currentSlide++
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? length - 1 : currentSlide - 1);
   }
 
-  if (!data) return;
 
+  if (!data)
+  return;
+  
 
   return (
     <div className="App">
@@ -53,26 +64,22 @@ currentSlide++
       <div>
         
         <div className="slides" >
-          <FaArrowAltCircleLeft className="leftarrow"  />
-          <FaArrowAltCircleRight className="rightarrow" />
-          {
-            data.map((data) => (
+          <FaArrowAltCircleLeft className="leftarrow" onClick={prevSlide} />
+          <FaArrowAltCircleRight className="rightarrow" onClick={nextSlide}/>
+          {/* {
+            data.map((data) => ( */}
               <div>
-                <img src={data.image.url}/>
-                <h3>{data.name}</h3>
-                <p>{data.temperament}</p>
+                <img src={data[currentSlide].image.url}/>
+                <h3>{data[currentSlide].name}</h3>
+                <p>{data[currentSlide].temperament}</p>
               </div>
-            ))
-         }
-          
+              
+            {/* ))
+         };           */}
           </div>
-       
-      </div>
-      {/* <Breed image={data[currentSlide].image.url}
-        name={data[currentSlide].name}
-        temperament={data[currentSlide].temperament} />
-     */}
-      {console.log(data[currentSlide], "This is temperment")}
+   
+      </div>  
+      
     </div>
-  );
+  ); 
 }
